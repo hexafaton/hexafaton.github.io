@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Rif'an Fatoni — CV</title>
+  <title>Hexafaton Profile</title>
   <meta name="description" content="Curriculum Vitae / Profil pribadi yang ringkas, bersih, dan responsif."/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,21 +34,48 @@
     .card.pad{padding:20px}
 
     /* Sidebar */
-    .side{position:sticky;top:12px;height:fit-content}
-    .avatar{display:grid;place-items:center;padding:24px 20px;border-bottom:1px solid var(--ring)}
-    .avatar .photo{width:140px;height:140px;border-radius:50%;background:linear-gradient(135deg,#d9f6e6,#f6fffb);border:6px solid #fff;box-shadow:var(--shadow)}
-    .avatar h1{font-size:1.4rem;margin:16px 0 4px;color:var(--green-800)}
-    .avatar small{color:var(--muted)}
+    .side {
+      position: sticky;
+      top: 12px;
+      height: fit-content;
+    }
 
-    .contact{padding:14px 20px;display:grid;gap:10px}
-    .row{display:flex;align-items:center;gap:10px;color:var(--muted)}
-    .row svg{width:18px;height:18px}
+    .avatar {
+      display: grid;
+      place-items: center;
+      padding: 24px 20px;
+      border-bottom: 1px solid var(--ring);
+    }
 
-    .skills{padding:14px 20px}
-    .skills h3{margin:6px 0 10px}
-    .pill{display:flex;justify-content:space-between;align-items:center;background:#f2fbf6;border:1px solid var(--ring);padding:10px 12px;border-radius:12px;margin:8px 0}
-    .meter{height:8px;border-radius:999px;background:#e9f7ef;overflow:hidden}
-    .bar{height:8px;background:linear-gradient(90deg,var(--green-600),var(--green-700));width:70%}
+    .avatar .photo {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 6px solid #fff;
+      box-shadow: var(--shadow);
+      display: flex;             /* biar gambar center */
+      align-items: center;
+      justify-content: center;
+      background: #f2fbf6;       /* warna fallback kalau foto belum ada */
+    }
+
+    .avatar .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;         /* isi penuh lingkaran */
+      display: block;            /* hilangkan jarak bawah default img */
+    }
+
+    .avatar h1 {
+      font-size: 1.4rem;
+      margin: 16px 0 4px;
+      color: var(--green-800);
+    }
+
+    .avatar small {
+      color: var(--muted);
+    }
 
     /* Main */
     .header{display:flex;flex-wrap:wrap;align-items:center;gap:14px;padding:18px 20px;border-bottom:1px solid var(--ring)}
@@ -99,7 +126,9 @@
       <!-- SIDEBAR -->
       <aside class="card side">
         <div class="avatar">
-          <div class="photo" aria-label="Foto profil"></div>
+          <div class="photo" aria-label="Foto profil">
+            <img src="fotosaya.jpg" alt="Foto Rif'an Fatoni" />
+          </div>
           <h1>Rif'an Fatoni</h1>
           <small>Full‑Stack Developer • IoT & CV Enthusiast</small>
         </div>
