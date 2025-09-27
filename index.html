@@ -1,344 +1,298 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>HexaCafe — Kopi & Rasa</title>
-  <meta name="description" content="Homepage kafe bernuansa hijau: menu, promo, lokasi, dan pemesanan." />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Rif'an Fatoni — CV</title>
+  <meta name="description" content="Curriculum Vitae / Profil pribadi yang ringkas, bersih, dan responsif."/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
     :root{
-      --green-900:#0f3d2e; /* header text */
-      --green-800:#145a3b; /* buttons */
+      --bg:#f6fbf7;
+      --paper:#ffffff;
+      --ink:#163227;
+      --muted:#5c7468;
+      --green-600:#2f9e62;
       --green-700:#1e7a4c;
-      --green-600:#2f9e62; /* accents */
-      --green-500:#46c37b; /* accents light */
-      --green-100:#e9fbf1; /* bg soft */
-      --sand:#f7f5ef;      /* paper tone */
-      --text:#18302a;
-      --muted:#5a6e65;
-      --shadow:0 10px 30px rgba(0,0,0,.12);
-      --radius:22px;
+      --green-800:#145a3b;
+      --ring:#cfe9df;
+      --radius:18px;
+      --shadow:0 10px 30px rgba(0,0,0,.08);
     }
     *{box-sizing:border-box}
-    html,body{margin:0;height:100%;scroll-behavior:smooth}
-    body{font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,sans-serif;color:var(--text);background:linear-gradient(180deg,var(--sand),var(--green-100));}
-    /* Navbar */
-    .nav{position:sticky;top:0;z-index:50;background:rgba(247,245,239,.7);backdrop-filter:saturate(160%) blur(8px);border-bottom:1px solid rgba(20,90,59,.08)}
-    .container{max-width:1200px;margin:auto;padding:0 20px}
-    .nav-wrap{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
-    .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
-    .brand svg{width:36px;height:36px}
-    .brand strong{font-size:1.15rem;color:var(--green-800)}
-    .nav ul{display:flex;gap:20px;list-style:none;margin:0;padding:0}
-    .nav a{color:var(--text);text-decoration:none;font-weight:600}
-    .nav a:hover{color:var(--green-700)}
-    .cta{display:inline-flex;align-items:center;gap:10px;background:var(--green-800);color:#fff;padding:10px 16px;border-radius:999px;box-shadow:var(--shadow);border:0;cursor:pointer}
-    .cta:hover{transform:translateY(-1px);background:var(--green-700)}
-    .menu-btn{display:none}
+    html,body{margin:0}
+    body{font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);}
+    a{color:var(--green-700);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:1000px;margin:auto;padding:0 18px}
+    .wrap{display:grid;grid-template-columns:1fr 2fr;gap:22px;margin:22px auto}
 
-    /* Hero */
-    .hero{position:relative;overflow:hidden}
-    .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:72px 0}
-    .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(47,158,98,.12);color:var(--green-800);padding:8px 12px;border-radius:999px;font-weight:600}
-    .title{font-size:3rem;line-height:1.05;margin:14px 0;color:var(--green-900)}
-    .subtitle{color:var(--muted);max-width:52ch}
-    .stats{display:flex;gap:24px;margin-top:22px}
-    .stat{background:#fff;padding:14px 18px;border-radius:14px;box-shadow:var(--shadow);text-align:center}
-    .stat b{display:block;font-size:1.25rem;color:var(--green-800)}
-    .cup{width:100%;height:380px;background:radial-gradient(1200px 240px at -20% -10%,rgba(70,195,123,.25),transparent),
-                         radial-gradient(900px 320px at 120% 120%,rgba(31,122,76,.2),transparent);
-         display:flex;align-items:center;justify-content:center}
-    .cup svg{width:85%;max-width:420px;filter:drop-shadow(var(--shadow))}
+    /* Card */
+    .card{background:var(--paper);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .card.pad{padding:20px}
 
-    /* Sections */
-    section{padding:64px 0}
-    h2.section-title{font-size:2rem;margin:0 0 24px;color:var(--green-900)}
-    p.section-sub{color:var(--muted);margin:-8px 0 32px}
+    /* Sidebar */
+    .side{position:sticky;top:12px;height:fit-content}
+    .avatar{display:grid;place-items:center;padding:24px 20px;border-bottom:1px solid var(--ring)}
+    .avatar .photo{width:140px;height:140px;border-radius:50%;background:linear-gradient(135deg,#d9f6e6,#f6fffb);border:6px solid #fff;box-shadow:var(--shadow)}
+    .avatar h1{font-size:1.4rem;margin:16px 0 4px;color:var(--green-800)}
+    .avatar small{color:var(--muted)}
 
-    /* Menu Cards */
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-    .card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
-    .thumb{height:160px;background:linear-gradient(135deg, #c9f4da, #f2fff7);position:relative}
-    .thumb .price{position:absolute;bottom:12px;left:12px;background:var(--green-800);color:#fff;padding:6px 10px;border-radius:12px;font-weight:700}
-    .card .body{padding:18px}
-    .tag{display:inline-block;background:rgba(20,90,59,.08);color:var(--green-800);padding:4px 10px;border-radius:999px;font-size:.8rem;font-weight:600}
-    .card h3{margin:10px 0 8px}
-    .card p{color:var(--muted);margin:0 0 14px}
+    .contact{padding:14px 20px;display:grid;gap:10px}
+    .row{display:flex;align-items:center;gap:10px;color:var(--muted)}
+    .row svg{width:18px;height:18px}
 
-    /* Promo ribbon */
-    .promo{background:linear-gradient(135deg,var(--green-700),var(--green-600));color:#fff;border-radius:var(--radius);padding:22px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-    .promo b{font-size:1.2rem}
+    .skills{padding:14px 20px}
+    .skills h3{margin:6px 0 10px}
+    .pill{display:flex;justify-content:space-between;align-items:center;background:#f2fbf6;border:1px solid var(--ring);padding:10px 12px;border-radius:12px;margin:8px 0}
+    .meter{height:8px;border-radius:999px;background:#e9f7ef;overflow:hidden}
+    .bar{height:8px;background:linear-gradient(90deg,var(--green-600),var(--green-700));width:70%}
 
-    /* About */
-    .about{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center}
-    .about .panel{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:22px}
-    .about ul{margin:0;padding-left:18px;color:var(--muted)}
+    /* Main */
+    .header{display:flex;flex-wrap:wrap;align-items:center;gap:14px;padding:18px 20px;border-bottom:1px solid var(--ring)}
+    .header .title{font-weight:700}
+    .header .tags{display:flex;gap:8px;flex-wrap:wrap;margin-left:auto}
+    .tag{background:#edf9f2;border:1px solid var(--ring);color:var(--green-700);padding:6px 10px;border-radius:999px;font-size:.85rem;font-weight:600}
 
-    /* Gallery */
-    .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-    .tile{border-radius:16px;aspect-ratio:1/1;background:linear-gradient(135deg,#e3ffe2,#e5fff6)}
+    .section{padding:18px 20px}
+    .section h2{margin:0 0 12px;color:var(--green-800)}
+    .muted{color:var(--muted)}
+
+    /* Timeline */
+    .timeline{position:relative;margin-left:6px}
+    .timeline::before{content:"";position:absolute;left:9px;top:0;bottom:0;width:2px;background:#d7efe4}
+    .item{position:relative;padding-left:28px;margin:14px 0}
+    .item::before{content:"";position:absolute;left:2px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--green-600);box-shadow:0 0 0 4px #e9f7ef}
+    .item h3{margin:0 0 4px}
+    .item .meta{display:flex;gap:10px;color:var(--muted);font-size:.95rem}
+
+    /* Projects */
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .project{border:1px solid var(--ring);padding:14px;border-radius:14px}
+    .project h3{margin:0 0 6px}
+    .project .stack{display:flex;gap:8px;flex-wrap:wrap}
 
     /* Footer */
-    footer{background:#0d2a21;color:#cfe9df;padding:48px 0;margin-top:40px}
-    .foot{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:24px}
-    .foot a{color:#cfe9df;text-decoration:none}
-    .foot a:hover{text-decoration:underline}
-    .mini{margin-top:22px;color:#9ad2bf;font-size:.9rem}
+    footer{padding:14px 0 28px;color:var(--muted)}
 
-    /* Responsive */
-    @media (max-width: 980px){
-      .hero .wrap{grid-template-columns:1fr;gap:20px;padding:48px 0}
-      .grid{grid-template-columns:repeat(2,1fr)}
-      .about{grid-template-columns:1fr}
-      .gallery{grid-template-columns:repeat(3,1fr)}
-    }
-    @media (max-width:680px){
-      .nav ul{display:none}
-      .menu-btn{display:inline-flex}
-      .title{font-size:2.2rem}
+    /* Buttons */
+    .btn{display:inline-flex;align-items:center;gap:8px;background:var(--green-700);color:#fff;padding:10px 14px;border-radius:999px;border:0;cursor:pointer}
+    .btn:hover{transform:translateY(-1px);background:var(--green-600)}
+    .btn.ghost{background:#fff;color:var(--green-700);border:2px solid var(--green-600)}
+
+    /* Mobile */
+    @media (max-width: 900px){
+      .wrap{grid-template-columns:1fr}
+      .side{position:relative;top:0}
       .grid{grid-template-columns:1fr}
-      .gallery{grid-template-columns:repeat(2,1fr)}
+      .header{justify-content:center;text-align:center}
+      .header .tags{margin-left:0;justify-content:center}
+      .avatar h1{font-size:1.25rem}
     }
   </style>
 </head>
 <body>
-  <!-- NAVBAR -->
-  <nav class="nav">
-    <div class="container nav-wrap">
-      <a class="brand" href="#top" aria-label="HexaCafe Beranda">
-        <!-- Leaf-Coffee Cup Icon -->
-        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M10 26h35a7 7 0 1 1 0 14h-3.5" stroke="#1e7a4c" stroke-width="3" stroke-linecap="round"/>
-          <rect x="8" y="22" width="38" height="26" rx="6" fill="#2f9e62"/>
-          <rect x="12" y="26" width="30" height="18" rx="4" fill="#ffffff"/>
-          <path d="M22 20c0-6 8-6 8-12" stroke="#1e7a4c" stroke-width="3" stroke-linecap="round"/>
-          <path d="M30 20c0-6 8-6 8-12" stroke="#1e7a4c" stroke-width="3" stroke-linecap="round"/>
-        </svg>
-        <strong>HexaCafe</strong>
-      </a>
-      <ul>
-        <li><a href="#menu">Menu</a></li>
-        <li><a href="#about">Tentang</a></li>
-        <li><a href="#galeri">Galeri</a></li>
-        <li><a href="#kontak">Kontak</a></li>
-      </ul>
-      <button class="cta menu-btn" onclick="document.querySelector('.nav ul').classList.toggle('show')">☰</button>
-      <a href="#kontak" class="cta" aria-label="Pesan sekarang">☕ Pesan</a>
-    </div>
-  </nav>
-
-  <!-- HERO -->
-  <header class="hero" id="top">
-    <div class="container wrap">
-      <div>
-        <span class="badge">🌿 Sejuk • Kopi • Ramah Lingkungan</span>
-        <h1 class="title">Rasakan Kehangatan Kopi <br/>dengan Sentuhan <span style="color:var(--green-600)">Hijau</span></h1>
-        <p class="subtitle">HexaCafe menyajikan racikan kopi terbaik, bahan lokal pilihan, dan suasana hijau menenangkan. Duduk santai, kerja produktif, atau bawa pulang—semua nikmat.
-        </p>
-        <div class="stats">
-          <div class="stat"><b>30+</b><small>Menu kopi & non-kopi</small></div>
-          <div class="stat"><b>100%</b><small>Biji kopi Nusantara</small></div>
-          <div class="stat"><b>08–22</b><small>Jam Operasional</small></div>
+  <div class="container">
+    <div class="wrap">
+      <!-- SIDEBAR -->
+      <aside class="card side">
+        <div class="avatar">
+          <div class="photo" aria-label="Foto profil"></div>
+          <h1>Rif'an Fatoni</h1>
+          <small>Full‑Stack Developer • IoT & CV Enthusiast</small>
         </div>
-        <div style="margin-top:22px;display:flex;gap:12px;flex-wrap:wrap">
-          <a class="cta" href="#menu">Lihat Menu</a>
-          <a class="cta" style="background:#fff;color:var(--green-800);border:2px solid var(--green-600)" href="#kontak">Reservasi</a>
+        <div class="contact">
+          <div class="row">
+            <!-- mail -->
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1Z" stroke="#1e7a4c" stroke-width="1.5"/><path d="m4 8 8 6 8-6" stroke="#1e7a4c" stroke-width="1.5"/></svg>
+            <a href="mailto:hello@domain.id">hello@domain.id</a>
+          </div>
+          <div class="row">
+            <!-- phone -->
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.5 3h2l1.5 4-2 1.5a12 12 0 0 0 6.5 6.5L16 13.5l4 1.5v2a2 2 0 0 1-2 2 15 15 0 0 1-13-13 2 2 0 0 1 2-2Z" stroke="#1e7a4c" stroke-width="1.5"/></svg>
+            <a href="https://wa.me/6281234567890" target="_blank" rel="noopener">+62 812‑3456‑7890</a>
+          </div>
+          <div class="row">
+            <!-- location -->
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 21s7-6.5 7-11a7 7 0 1 0-14 0c0 4.5 7 11 7 11Z" stroke="#1e7a4c" stroke-width="1.5"/><circle cx="12" cy="10" r="3" stroke="#1e7a4c" stroke-width="1.5"/></svg>
+            <span>Indonesia (WIB)</span>
+          </div>
+          <div class="row">
+            <!-- github -->
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.5 2 2 6.6 2 12.2c0 4.5 2.9 8.2 6.9 9.5.5.1.7-.2.7-.5v-2c-2.8.6-3.4-1.2-3.4-1.2-.4-1.1-1-1.4-1-1.4-.9-.6.1-.6.1-.6 1 .1 1.6 1 1.6 1 .9 1.6 2.5 1.1 3.1.8.1-.7.4-1.1.7-1.4-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-1.9 1-2.6-.1-.3-.4-1.3.1-2.7 0 0 .9-.3 2.8 1a9.2 9.2 0 0 1 5.1 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.5 1 2.6 0 3.9-2.4 4.7-4.6 5 .4.3.7.9.7 1.8v2.7c0 .3.2.6.7.5A10.2 10.2 0 0 0 22 12.2C22 6.6 17.5 2 12 2Z" fill="#1e7a4c"/></svg>
+            <a href="#" target="_blank" rel="noopener">github.com/hexafaton</a>
+          </div>
+          <div class="row">
+            <!-- linkedin -->
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="18" height="18" rx="2" stroke="#1e7a4c" stroke-width="1.5"/><path d="M7 17v-6" stroke="#1e7a4c" stroke-width="1.5"/><circle cx="7" cy="7" r="1" fill="#1e7a4c"/><path d="M11 17v-4.2c0-1.5 1.2-2.8 2.7-2.8v0c1.5 0 2.3 1.1 2.3 2.6V17" stroke="#1e7a4c" stroke-width="1.5"/></svg>
+            <a href="#" target="_blank" rel="noopener">linkedin.com/in/rifan</a>
+          </div>
         </div>
-      </div>
-      <div class="cup">
-        <!-- Decorative coffee SVG -->
-        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <defs>
-            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
-              <stop offset="0%" stop-color="#2f9e62"/>
-              <stop offset="100%" stop-color="#46c37b"/>
-            </linearGradient>
-          </defs>
-          <ellipse cx="200" cy="320" rx="140" ry="22" fill="rgba(0,0,0,.08)"/>
-          <rect x="80" y="90" width="200" height="170" rx="26" fill="url(#g1)"/>
-          <rect x="98" y="110" width="164" height="130" rx="16" fill="#fff"/>
-          <path d="M280 130a40 40 0 1 1 0 80" fill="none" stroke="#2f9e62" stroke-width="16" stroke-linecap="round"/>
-          <path d="M150 86c0-26 35-26 35-52M200 86c0-26 35-26 35-52" stroke="#1e7a4c" stroke-width="8" stroke-linecap="round"/>
-        </svg>
-      </div>
-    </div>
-  </header>
 
-  <!-- MENU -->
-  <section id="menu">
-    <div class="container">
-      <h2 class="section-title">Menu Favorit</h2>
-      <p class="section-sub">Racikan andalan yang paling banyak dipesan setiap hari.</p>
-      <div class="grid">
-        <!-- Card 1 -->
-        <article class="card" aria-label="Es Kopi Susu Gula Aren">
-          <div class="thumb">
-            <span class="price">Rp22.000</span>
+        <div class="skills">
+          <h3>Keterampilan</h3>
+          <div class="pill">
+            <span>JavaScript / TypeScript</span><span>Advanced</span>
           </div>
-          <div class="body">
-            <span class="tag">Kopi Susu</span>
-            <h3>Es Kopi Gula Aren</h3>
-            <p>Kopi arabika blend, susu segar, dan gula aren asli yang lembut.</p>
-            <button class="cta" onclick="addToCart('Es Kopi Gula Aren')">Tambah</button>
-          </div>
-        </article>
-        <!-- Card 2 -->
-        <article class="card" aria-label="Matcha Latte">
-          <div class="thumb">
-            <span class="price">Rp24.000</span>
-          </div>
-          <div class="body">
-            <span class="tag">Non-Kopi</span>
-            <h3>Matcha Latte</h3>
-            <p>Matcha premium dengan susu, creamy dan earthy, favorit pecinta hijau.</p>
-            <button class="cta" onclick="addToCart('Matcha Latte')">Tambah</button>
-          </div>
-        </article>
-        <!-- Card 3 -->
-        <article class="card" aria-label="Americano">
-          <div class="thumb">
-            <span class="price">Rp18.000</span>
-          </div>
-          <div class="body">
-            <span class="tag">Espresso</span>
-            <h3>Americano</h3>
-            <p>Shot espresso dengan air panas—pahit mantap, clean dan bold.</p>
-            <button class="cta" onclick="addToCart('Americano')">Tambah</button>
-          </div>
-        </article>
-      </div>
+          <div class="meter" aria-hidden="true"><div class="bar" style="width:85%"></div></div>
 
-      <div class="promo" style="margin-top:22px" role="note" aria-label="Promo">
-        <div>
-          <b>Promo Hijau: Bawa Tumbler, Diskon 10%</b>
-          <div style="opacity:.9">Kami dukung gerakan less-waste. Berlaku setiap hari untuk minuman dingin/panas.</div>
+          <div class="pill">
+            <span>Python (YOLO / CV)</span><span>Advanced</span>
+          </div>
+          <div class="meter" aria-hidden="true"><div class="bar" style="width:80%"></div></div>
+
+          <div class="pill">
+            <span>PHP (CodeIgniter 4)</span><span>Intermediate</span>
+          </div>
+          <div class="meter" aria-hidden="true"><div class="bar" style="width:70%"></div></div>
+
+          <div class="pill">
+            <span>DevOps (Docker, Nginx)</span><span>Intermediate</span>
+          </div>
+          <div class="meter" aria-hidden="true"><div class="bar" style="width:65%"></div></div>
         </div>
-        <a class="cta" href="#kontak">Klaim</a>
-      </div>
-    </div>
-  </section>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="container">
-      <h2 class="section-title">Tentang Kami</h2>
-      <div class="about">
-        <div class="panel">
-          <h3>Ruang Nyaman, Rasa Berkesan</h3>
-          <p>Kami percaya kafe adalah tempat bertemu ide. Desain interior serba hijau untuk mengurangi stres dan meningkatkan fokus pelanggan.</p>
-          <ul>
-            <li>Green corner dengan tanaman asli</li>
-            <li>Wi‑Fi cepat & banyak colokan</li>
-            <li>Beans dari petani lokal bersertifikat</li>
-          </ul>
+        <div class="pad" style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:16px">
+          <button class="btn" onclick="window.print()">🖨️ Cetak / Simpan PDF</button>
+          <a class="btn ghost" href="#kontak">✉️ Kontak</a>
         </div>
-        <div class="panel">
-          <h3>Nilai Kami</h3>
-          <p>Kualitas, keramahan, dan keberlanjutan. Setiap cangkir adalah komitmen kami.</p>
-          <ul>
-            <li>Penyeduhan manual & mesin modern</li>
-            <li>Pilihan susu nabati (oat/almond)</li>
-            <li>Pengelolaan sampah bertanggung jawab</li>
-          </ul>
+      </aside>
+
+      <!-- MAIN -->
+      <main class="card">
+        <div class="header">
+          <div class="title">
+            <div style="font-size:1.1rem;color:var(--muted);font-weight:600">Tentang Saya</div>
+            <div style="font-size:1.5rem">Membangun solusi dari <em>backend</em> ke <em>edge‑AI</em></div>
+          </div>
+          <div class="tags">
+            <span class="tag">Full‑Stack</span>
+            <span class="tag">Computer Vision</span>
+            <span class="tag">IoT</span>
+            <span class="tag">Automation</span>
+          </div>
         </div>
-      </div>
-    </div>
-  </section>
+        <div class="section">
+          <p class="muted">Saya pengembang yang terbiasa menggabungkan web app (CodeIgniter/Node) dengan perangkat IoT dan Computer Vision (YOLO, OpenCV). Fokus pada solusi praktis: dari sistem antrian klinik, dashboard operasional, sampai prototipe penyeberangan jalan adaptif berbasis kamera.</p>
+        </div>
 
-  <!-- GALLERY -->
-  <section id="galeri">
-    <div class="container">
-      <h2 class="section-title">Galeri Suasana</h2>
-      <p class="section-sub">Sekilas sudut-sudut favorit pelanggan.</p>
-      <div class="gallery">
-        <div class="tile" title="Bar kopi"></div>
-        <div class="tile" title="Tanaman hijau"></div>
-        <div class="tile" title="Meja kerja"></div>
-        <div class="tile" title="Sudut sofa"></div>
-        <div class="tile" title="Latte art"></div>
-        <div class="tile" title="Outdoor seats"></div>
-        <div class="tile" title="Ruang event"></div>
-        <div class="tile" title="Beans"></div>
-      </div>
-    </div>
-  </section>
+        <div class="section">
+          <h2>Pengalaman</h2>
+          <div class="timeline">
+            <div class="item">
+              <h3>Developer — Sistem Antrian Klinik (CI4)</h3>
+              <div class="meta"><span>2024–sekarang</span><span>Freelance</span></div>
+              <p>Membangun modul poli, kategori antrian, auto reset harian, dan UI real‑time untuk beberapa klinik. Integrasi TV display & speaker.</p>
+              <ul class="muted">
+                <li>Role‑based access, audit log, dan notifikasi</li>
+                <li>Optimasi query & caching untuk beban puncak</li>
+              </ul>
+            </div>
+            <div class="item">
+              <h3>Engineer — Prototipe Penyeberangan Jalan Adaptif</h3>
+              <div class="meta"><span>2024</span><span>R&D</span></div>
+              <p>Deteksi pejalan kaki/kendaraan via YOLO, Raspberry Pi, dan CCTV LAN; kontrol speaker & pesan peringatan real‑time.</p>
+            </div>
+            <div class="item">
+              <h3>Full‑Stack — Dashboard Operasional & Inventory</h3>
+              <div class="meta"><span>2023</span><span>Kontrak</span></div>
+              <p>REST API, autentikasi JWT, dan visualisasi stok/penjualan. Deploy Nginx + Docker.</p>
+            </div>
+          </div>
+        </div>
 
-  <!-- CONTACT -->
-  <section id="kontak">
-    <div class="container">
-      <h2 class="section-title">Hubungi & Pesan</h2>
-      <div class="about">
-        <div class="panel">
-          <form onsubmit="event.preventDefault(); submitForm();" aria-label="Form pemesanan">
-            <label>Nama<br/>
-              <input required type="text" name="nama" placeholder="Nama kamu" style="width:100%;padding:12px;border:2px solid #cfe9df;border-radius:12px;margin:6px 0 12px">
+        <div class="section">
+          <h2>Pendidikan</h2>
+          <div class="timeline">
+            <div class="item">
+              <h3>S1 Teknik Informatika</h3>
+              <div class="meta"><span>—</span><span>Indonesia</span></div>
+              <p>Fokus: Sistem Terdistribusi, Jaringan, Computer Vision.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>Proyek Pilihan</h2>
+          <div class="grid">
+            <div class="project">
+              <h3>QueueHub (CI4)</h3>
+              <p class="muted">Sistem antrian klinik multi‑poli dengan display TV & notifikasi suara.</p>
+              <div class="stack">
+                <span class="tag">PHP</span><span class="tag">CodeIgniter 4</span><span class="tag">MySQL</span>
+              </div>
+            </div>
+            <div class="project">
+              <h3>SmartCross</h3>
+              <p class="muted">Penyeberangan jalan adaptif berbasis kamera + YOLO pada Raspberry Pi.</p>
+              <div class="stack">
+                <span class="tag">Python</span><span class="tag">YOLOv8</span><span class="tag">Raspberry Pi</span>
+              </div>
+            </div>
+            <div class="project">
+              <h3>StockLens</h3>
+              <p class="muted">Analitik saham sederhana: watchlist, alert harga, dan simulasi lot.</p>
+              <div class="stack">
+                <span class="tag">Node</span><span class="tag">Postgres</span><span class="tag">Chart.js</span>
+              </div>
+            </div>
+            <div class="project">
+              <h3>HexaCafe Site</h3>
+              <p class="muted">Landing page kafe bernuansa hijau (UI/UX, aksesibilitas, responsive).</p>
+              <div class="stack">
+                <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Vanilla JS</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" id="kontak">
+          <h2>Kontak</h2>
+          <form onsubmit="event.preventDefault();send();" class="card pad" style="border:1px solid var(--ring)">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+              <label>Nama
+                <input required name="nama" type="text" placeholder="Nama Anda" style="width:100%;padding:12px;border:2px solid var(--ring);border-radius:12px;margin-top:6px">
+              </label>
+              <label>Email
+                <input required name="email" type="email" placeholder="email@domain.id" style="width:100%;padding:12px;border:2px solid var(--ring);border-radius:12px;margin-top:6px">
+              </label>
+            </div>
+            <label style="display:block;margin-top:10px">Pesan
+              <textarea required name="pesan" rows="4" placeholder="Tulis pesan..." style="width:100%;padding:12px;border:2px solid var(--ring);border-radius:12px;margin-top:6px"></textarea>
             </label>
-            <label>Menu<br/>
-              <input required type="text" name="menu" id="menuInput" placeholder="Contoh: Matcha Latte" style="width:100%;padding:12px;border:2px solid #cfe9df;border-radius:12px;margin:6px 0 12px">
-            </label>
-            <label>Catatan<br/>
-              <textarea name="catatan" rows="3" placeholder="Gula sedikit, less ice, dll" style="width:100%;padding:12px;border:2px solid #cfe9df;border-radius:12px;margin:6px 0 12px"></textarea>
-            </label>
-            <button class="cta" type="submit">Kirim Pesanan</button>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+              <button class="btn" type="submit">Kirim</button>
+              <a class="btn ghost" href="#">Lihat Portofolio</a>
+            </div>
+            <small class="muted" style="display:block;margin-top:10px">Form ini demo — integrasi ke email/WhatsApp bisa ditambahkan.</small>
           </form>
         </div>
-        <div class="panel">
-          <h3>Lokasi</h3>
-          <p>Jl. Hijau Raya No. 6, Kota Kamu</p>
-          <p><b>Jam Buka:</b> 08.00–22.00 (Setiap Hari)</p>
-          <div style="height:220px;border-radius:14px;overflow:hidden;background:linear-gradient(135deg,#d4f7e0,#eefcf4);display:flex;align-items:center;justify-content:center;color:var(--green-800);font-weight:700">Map Placeholder</div>
-          <p class="mini">Ingin integrasi Google Maps asli? Ganti kotak di atas dengan iframe Maps.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <footer>
-    <div class="container foot">
-      <div>
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-          <div style="width:34px;height:34px;border-radius:10px;background:#2f9e62"></div>
-          <b>HexaCafe</b>
-        </div>
-        <div class="mini">© <span id="y"></span> HexaCafe. Dibuat dengan cinta & kopi.
-        </div>
-      </div>
-      <div>
-        <b>Menu</b>
-        <ul style="list-style:none;padding:0;margin:10px 0 0;line-height:1.8">
-          <li><a href="#menu">Kopi</a></li>
-          <li><a href="#menu">Non‑Kopi</a></li>
-          <li><a href="#menu">Snack</a></li>
-        </ul>
-      </div>
-      <div>
-        <b>Kontak</b>
-        <ul style="list-style:none;padding:0;margin:10px 0 0;line-height:1.8">
-          <li><a href="mailto:hello@hexacafe.id">hello@hexacafe.id</a></li>
-          <li><a href="https://wa.me/6281234567890">WhatsApp</a></li>
-          <li><a href="#kontak">Reservasi</a></li>
-        </ul>
-      </div>
+        <footer class="section" style="text-align:center">
+          <div>© <span id="y"></span> Rif'an Fatoni • Dibuat dengan cinta & kopi</div>
+        </footer>
+      </main>
     </div>
-  </footer>
+  </div>
 
   <script>
-    // simple cart demo + helpers
-    const cart = [];
-    function addToCart(name){
-      cart.push(name);
-      const input = document.getElementById('menuInput');
-      if(input && !input.value) input.value = name;
-      alert(`${name} ditambahkan ke keranjang! (demo)`);
-    }
-    function submitForm(){
-      alert('Pesanan terkirim! (demo)');
-      document.querySelector('#kontak form').reset();
-    }
+    // Fill year
     document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Demo send
+    function send(){
+      alert('Terima kasih! Pesan Anda terkirim. (demo)');
+    }
+
+    // Print-friendly: tweak for paper
+    window.addEventListener('beforeprint', ()=>{
+      document.querySelectorAll('.btn').forEach(b=>b.style.display='none');
+    });
+    window.addEventListener('afterprint', ()=>{
+      document.querySelectorAll('.btn').forEach(b=>b.style.display='inline-flex');
+    });
   </script>
 </body>
 </html>
