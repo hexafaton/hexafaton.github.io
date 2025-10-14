@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hexafaton | Home</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>Hexafaton | Beranda</title>
   <link rel="stylesheet" href="assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- 🌟 Hero Section -->
-  <section class="hero">
-    <header>
+  <!-- 🔹 Header Navigasi -->
+  <header>
+    <div class="navbar">
       <img src="assets/img/logo.png" alt="Hexafaton Logo" class="logo">
       <nav>
         <a href="index.html" class="active">Beranda</a>
@@ -18,46 +18,45 @@
         <a href="cv/">CV</a>
         <a href="hobbies/">Hobi</a>
       </nav>
-    </header>
+    </div>
+  </header>
 
+  <!-- 🔹 Hero Section -->
+  <section class="hero">
     <div class="hero-content">
-      <h1><span>Hexafaton</span></h1>
-      <p>Perpaduan antara Teknologi, Analisis, dan Kreativitas.  
-      Jelajahi pemikiran, karya, dan perjalanan saya dalam dunia digital dan investasi.</p>
-      <div class="hero-buttons">
-        <a href="articles/" class="btn-primary">Baca Artikel</a>
-        <a href="cv/" class="btn-outline">Lihat CV</a>
-      </div>
+      <h1>Selamat Datang di <span>Hexafaton</span></h1>
+      <p>Tempat saya berbagi karya, pengalaman, dan perjalanan hidup di dunia teknologi, kreativitas, dan inspirasi.</p>
+      <a href="articles/" class="btn-main">Baca Artikel</a>
     </div>
   </section>
 
-  <!-- 🔶 Feature Section -->
-  <section class="features">
-    <div class="feature-card">
+  <!-- 🔹 3 Kartu Utama -->
+  <section class="sections">
+    <div class="card" onclick="location.href='articles/'">
       <img src="assets/img/hobbies/code.jpg" alt="Artikel">
-      <h2>Artikel & Insight</h2>
-      <p>Tulisan mendalam tentang saham, teknologi, dan pemikiran pribadi.</p>
-      <a href="articles/" class="btn-link">Jelajahi →</a>
+      <h2>📰 Artikel</h2>
+      <p>Analisis saham, tips coding, dan berbagai tulisan reflektif.</p>
+      <a href="articles/" class="btn">Lihat Artikel</a>
     </div>
 
-    <div class="feature-card">
+    <div class="card" onclick="location.href='cv/'">
       <img src="assets/img/profile.jpg" alt="CV">
-      <h2>Curriculum Vitae</h2>
-      <p>Kenali perjalanan karier, proyek, dan pengalaman saya di dunia profesional.</p>
-      <a href="cv/" class="btn-link">Lihat Profil →</a>
+      <h2>💼 Curriculum Vitae</h2>
+      <p>Lihat profil profesional, pengalaman kerja, dan perjalanan akademik saya.</p>
+      <a href="cv/" class="btn">Lihat CV</a>
     </div>
 
-    <div class="feature-card">
-      <img src="assets/img/hobbies/musik.jpg" alt="Hobi">
-      <h2>Kreasi & Hobi</h2>
-      <p>Musik, fotografi, dan eksplorasi desain — ruang inspirasi tanpa batas.</p>
-      <a href="hobbies/" class="btn-link">Lihat Galeri →</a>
+    <div class="card" onclick="location.href='hobbies/'">
+      <img src="assets/img/hobbies/foto.jpg" alt="Hobi">
+      <h2>🎨 Hobi</h2>
+      <p>Dari musik, fotografi, hingga coding — di sinilah sisi kreatif saya.</p>
+      <a href="hobbies/" class="btn">Lihat Hobi</a>
     </div>
   </section>
 
   <!-- 🔹 Footer -->
   <footer>
-    <p>© 2025 <strong>Hexafaton</strong> — Dibangun dengan ❤️ & GitHub Pages</p>
+    <p>© 2025 Hexafaton | Dibangun dengan ❤️ dan GitHub Pages</p>
   </footer>
 </body>
 </html>

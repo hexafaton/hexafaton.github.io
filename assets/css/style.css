@@ -1,148 +1,122 @@
-/* === HEXAFATON BRAND STYLE === */
-:root {
-  --green-dark: #004b32;
-  --green-light: #0d7748;
-  --orange: #ff6600;
-  --white: #ffffff;
-  --gray: #f0f0f0;
-}
-
+/* 🌈 Style Utama Hexafaton */
 body {
-  margin: 0;
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, var(--green-dark), var(--green-light));
-  color: var(--white);
-  overflow-x: hidden;
+  margin: 0;
+  background: #f9fafb;
+  color: #222;
 }
 
-/* 🔹 Header Navigation */
+/* 🔹 Navbar */
 header {
+  background: #1e7a4c;
+  padding: 10px 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 5%;
+  width: 90%;
+  margin: auto;
 }
 .logo {
-  height: 65px;
-  transition: transform 0.3s ease;
-}
-.logo:hover {
-  transform: scale(1.08);
+  height: 55px;
 }
 nav a {
-  color: var(--white);
-  margin: 0 1rem;
+  color: #fff;
   text-decoration: none;
+  margin: 0 15px;
   font-weight: 500;
-  transition: color 0.3s;
 }
-nav a:hover,
-nav a.active {
-  color: var(--orange);
+nav a.active, nav a:hover {
+  text-decoration: underline;
 }
 
-/* 🔸 Hero Section */
+/* 🔹 Hero Section */
 .hero {
+  background: linear-gradient(to right, #145a3b, #1e7a4c);
+  color: #fff;
+  padding: 80px 20px;
   text-align: center;
-  padding: 80px 20px 100px;
 }
 .hero h1 {
-  font-size: 3rem;
-  margin-bottom: 10px;
-  font-weight: 700;
-  letter-spacing: 1px;
+  font-size: 2.6rem;
+  margin-bottom: 15px;
 }
 .hero h1 span {
-  color: var(--orange);
+  color: #ffb703;
 }
 .hero p {
-  max-width: 700px;
-  margin: 0 auto 30px;
-  line-height: 1.6;
-  color: #e8e8e8;
+  font-size: 1.1rem;
+  margin-bottom: 25px;
 }
-.hero-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-.btn-primary,
-.btn-outline {
-  padding: 12px 25px;
+.btn-main {
+  background: #ffb703;
+  color: #145a3b;
+  padding: 10px 25px;
   border-radius: 8px;
-  font-weight: 600;
   text-decoration: none;
-  transition: 0.3s ease;
+  font-weight: 600;
+  transition: 0.3s;
 }
-.btn-primary {
-  background: var(--orange);
-  color: var(--white);
-}
-.btn-primary:hover {
-  background: #ff8533;
-}
-.btn-outline {
-  border: 2px solid var(--orange);
-  color: var(--orange);
-}
-.btn-outline:hover {
-  background: var(--orange);
-  color: var(--white);
+.btn-main:hover {
+  background: #ffd166;
 }
 
-/* 🔶 Features Section */
-.features {
+/* 🔹 Section Cards */
+.sections {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 40px;
-  padding: 60px 20px;
-  background: var(--white);
-  color: #222;
+  gap: 30px;
+  padding: 50px 20px;
 }
-.feature-card {
-  width: 300px;
+.card {
+  background: #fff;
   border-radius: 12px;
-  background: var(--gray);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  width: 300px;
   text-align: center;
+  padding-bottom: 20px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.feature-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
 }
-.feature-card img {
+.card img {
   width: 100%;
   height: 180px;
   object-fit: cover;
+  border-radius: 12px 12px 0 0;
 }
-.feature-card h2 {
-  color: var(--green-dark);
-  margin: 15px 0 10px;
+.card h2 {
+  margin: 15px 0 5px 0;
+  color: #145a3b;
 }
-.feature-card p {
-  padding: 0 20px;
+.card p {
   font-size: 0.95rem;
+  padding: 0 15px;
 }
-.btn-link {
+.btn {
   display: inline-block;
-  margin: 15px 0 20px;
-  color: var(--orange);
-  font-weight: 600;
+  background: #1e7a4c;
+  color: white;
+  padding: 8px 18px;
+  border-radius: 6px;
   text-decoration: none;
+  margin-top: 10px;
 }
-.btn-link:hover {
-  color: var(--green-dark);
+.btn:hover {
+  background: #145a3b;
 }
 
-/* 🔸 Footer */
+/* 🔹 Footer */
 footer {
-  background: var(--green-dark);
-  color: var(--white);
+  background: #145a3b;
+  color: white;
   text-align: center;
-  padding: 1rem;
+  padding: 15px 0;
   font-size: 0.9rem;
-  border-top: 3px solid var(--orange);
 }
