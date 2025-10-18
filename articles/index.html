@@ -74,10 +74,14 @@
             ? a.image
             : "../assets/img/default.jpg";
 
+          // 🆕 Tambahan: tampilkan author
+          const authorName = a.author ? a.author : "Tidak diketahui";
+
           card.innerHTML = `
             <img src="${imgSrc}" alt="${a.title}">
             <div class="article-content">
               <h2>${a.title}</h2>
+              <p class="author">✍️ ${authorName}</p>
               <p>${a.content.substring(0, 150)}...</p>
               <span class="date">
                 ${new Date(a.date).toLocaleDateString("id-ID", {

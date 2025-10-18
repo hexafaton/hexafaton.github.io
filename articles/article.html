@@ -55,6 +55,13 @@
       line-height: 1.3;
     }
 
+    .author {
+      color: #1e7a4c;
+      font-weight: 500;
+      margin-bottom: 6px;
+      font-size: 1rem;
+    }
+
     .date {
       color: #777;
       font-size: 14px;
@@ -114,6 +121,10 @@
   <div class="container">
     <img id="image" class="article-image" alt="Gambar Artikel">
     <h2 id="title">Memuat...</h2>
+
+    <!-- 🆕 Tambahan: Nama Penulis -->
+    <p class="author" id="author"></p>
+
     <span class="date" id="date"></span>
     <div class="content" id="content"></div>
     <a href="../articles/" class="back">← Kembali ke Artikel</a>
@@ -130,6 +141,7 @@
     const id = params.get("id");
 
     const titleEl = document.getElementById("title");
+    const authorEl = document.getElementById("author");
     const dateEl = document.getElementById("date");
     const contentEl = document.getElementById("content");
     const imageEl = document.getElementById("image");
@@ -150,6 +162,12 @@
       }
 
       titleEl.textContent = article.title;
+
+      // 🆕 Tampilkan penulis (jika ada)
+      authorEl.textContent = article.author
+        ? `✍️ ${article.author}`
+        : "✍️ Penulis tidak diketahui";
+
       dateEl.textContent = new Date(article.date).toLocaleDateString("id-ID", {
         day: "2-digit",
         month: "long",
