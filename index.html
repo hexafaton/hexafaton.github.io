@@ -6,6 +6,7 @@
   <title>Hexafaton | Beranda</title>
   <link rel="stylesheet" href="assets/css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <script src="articles/config.js"></script>
 </head>
 <body>
   <!-- 🔹 Header Navigasi -->
@@ -16,7 +17,6 @@
         <a href="index.html" class="active">Beranda</a>
         <a href="articles/">Artikel</a>
         <a href="cvbro/">CV</a>
-        <a href="hobbies/">Hobi</a>
       </nav>
     </div>
   </header>
@@ -26,31 +26,15 @@
     <div class="hero-content">
       <h1>Selamat Datang di <span>Hexafaton</span></h1>
       <p>Tempat saya berbagi karya, pengalaman, dan perjalanan hidup di dunia teknologi, kreativitas, dan inspirasi.</p>
-      <a href="articles/" class="btn-main">Baca Artikel</a>
+      <a href="articles/" class="btn-main">Baca Semua Artikel</a>
     </div>
   </section>
 
-  <!-- 🔹 3 Kartu Utama -->
+  <!-- 🔹 Section: Artikel Terbaru -->
   <section class="sections">
-    <div class="card" onclick="location.href='articles/index.html'">
-      <!--<img src="assets/img/hobbies/code.jpg" alt="Artikel">-->
-      <h2>📰 Artikel</h2>
-      <p>Analisis saham, tips coding, dan berbagai tulisan reflektif.</p>
-      <a href="articles/index.html" class="btn">Lihat Artikel</a>
-    </div>
-
-    <div class="card" onclick="location.href='cvbro/index.html'">
-      <!--<img src="assets/img/profile.jpg" alt="CV">-->
-      <h2>💼 Curriculum Vitae</h2>
-      <p>Lihat profil profesional, pengalaman kerja, dan perjalanan akademik saya.</p>
-      <a href="cvbro/index.html" class="btn">Lihat CV</a>
-    </div>
-
-    <div class="card" onclick="location.href='hobbies/'">
-      <!--<img src="assets/img/hobbies/foto.jpg" alt="Hobi">-->
-      <h2>🎨 Hobi</h2>
-      <p>Dari musik, fotografi, hingga coding — di sinilah sisi kreatif saya.</p>
-      <a href="hobbies/" class="btn">Lihat Hobi</a>
+    <h2 style="text-align:center; color:#145a3b;">📰 3 Artikel Terbaru</h2>
+    <div id="latest-articles" class="latest-container">
+      <p style="text-align:center;">⏳ Memuat artikel terbaru...</p>
     </div>
   </section>
 
@@ -58,5 +42,43 @@
   <footer>
     <p>© 2025 Hexafaton | Dibangun dengan ❤️ dan GitHub Pages</p>
   </footer>
+
+  <!-- 🔹 Script Artikel Terbaru -->
+  <script>
+    async function loadLatestArticles() {
+      const container = document.getElementById("latest-articles");
+      try {
+        const res = await fetch(`${API_URL}/api/articles`);
+        const data = await res.json();
+
+        if (!data.length) {
+          container.innerHTML = "<p style='text-align:center;'>Belum ada artikel yang dipublikasikan.</p>";
+          return;
+        }
+
+        // Urutkan dari terbaru, ambil hanya 3
+        const latest = data.reverse().slice(0, 3);
+
+        // Tampilkan
+        container.innerHTML = "";
+        latest.forEach(a => {
+          const card = document.createElement("div");
+          card.className = "card";
+          card.innerHTML = `
+            <h2>${a.title}</h2>
+            <p>${a.content.substring(0, 150)}...</p>
+            <a href="articles/article.html?id=${a.id}" class="btn">Baca Selengkapnya</a>
+          `;
+          container.appendChild(card);
+        });
+      } catch (err) {
+        container.innerHTML = "<p style='text-align:center; color:red;'>⚠️ Gagal memuat artikel.</p>";
+        console.error(err);
+      }
+    }
+
+    // Jalankan saat halaman dimuat
+    window.addEventListener("DOMContentLoaded", loadLatestArticles);
+  </script>
 </body>
 </html>

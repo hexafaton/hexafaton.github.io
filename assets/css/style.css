@@ -120,3 +120,52 @@ footer {
   padding: 15px 0;
   font-size: 0.9rem;
 }
+
+/* 🔹 Section Artikel Terbaru */
+.latest-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.latest-container .card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  width: 300px;
+  text-align: center;
+  padding: 20px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.latest-container .card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.latest-container h2 {
+  color: #145a3b;
+  margin-bottom: 10px;
+}
+
+.latest-container p {
+  font-size: 0.95rem;
+  color: #444;
+  margin-bottom: 15px;
+}
+
+.latest-container .btn {
+  background: #1e7a4c;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.latest-container .btn:hover {
+  background: #145a3b;
+}
