@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Artikel | Hexafaton</title>
 
-  <!-- 🔗 Fonts & CSS -->
+  <!-- 🔗 Fonts & Config -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <script src="../config.js"></script>
 
@@ -51,22 +51,35 @@
     h2 {
       color: #145a3b;
       font-size: 2rem;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
       line-height: 1.3;
     }
 
-    .author {
-      color: #1e7a4c;
-      font-weight: 500;
-      margin-bottom: 6px;
-      font-size: 1rem;
+    /* 🔹 Meta bar (tanggal di kiri, author di kanan) */
+    .meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.95rem;
+      color: #555;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
     }
 
-    .date {
-      color: #777;
-      font-size: 14px;
-      margin-bottom: 20px;
-      display: block;
+    .meta .date {
+      color: #555;
+    }
+
+    .meta .author {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 500;
+      color: #145a3b;
+    }
+
+    .meta .author::before {
+      content: "✍️";
     }
 
     .content {
@@ -110,6 +123,11 @@
       h2 {
         font-size: 1.6rem;
       }
+      .meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+      }
     }
   </style>
 </head>
@@ -122,10 +140,12 @@
     <img id="image" class="article-image" alt="Gambar Artikel">
     <h2 id="title">Memuat...</h2>
 
-    <!-- 🆕 Tambahan: Nama Penulis -->
-    <p class="author" id="author"></p>
+    <!-- 🔹 Baris tanggal & author (sejajar kanan-kiri) -->
+    <div class="meta">
+      <span class="date" id="date"></span>
+      <p class="author" id="author"></p>
+    </div>
 
-    <span class="date" id="date"></span>
     <div class="content" id="content"></div>
     <a href="../articles/" class="back">← Kembali ke Artikel</a>
   </div>
@@ -163,16 +183,15 @@
 
       titleEl.textContent = article.title;
 
-      // 🆕 Tampilkan penulis (jika ada)
-      authorEl.textContent = article.author
-        ? `✍️ ${article.author}`
-        : "✍️ Penulis tidak diketahui";
-
+      // 🗓️ Tanggal di kiri
       dateEl.textContent = new Date(article.date).toLocaleDateString("id-ID", {
         day: "2-digit",
         month: "long",
         year: "numeric",
       });
+
+      // ✍️ Author di kanan
+      authorEl.textContent = article.author ? article.author : "Penulis tidak diketahui";
 
       // tampilkan gambar jika ada
       if (article.image) {
