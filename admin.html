@@ -6,10 +6,7 @@
   <title>Admin | Hexafaton CMS</title>
 
   <!-- 🔗 Fonts & CSS -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/admin.css" />
 
   <!-- 🔗 Konfigurasi API -->
@@ -18,7 +15,8 @@
 <body>
   <!-- 🔐 Cek Login -->
   <script>
-    if (localStorage.getItem("hexafaton_admin") !== "true") {
+    // GUNAKAN SESSION STORAGE, BUKAN LOCAL
+    if (sessionStorage.getItem("hexafaton_admin_session") !== "true") {
       window.location.href = "login.html";
     }
   </script>
@@ -42,19 +40,10 @@
     <input type="hidden" id="articleId" />
     
     <label for="title">Judul Artikel</label>
-    <input
-      type="text"
-      id="title"
-      placeholder="Masukkan judul artikel"
-      required
-    />
+    <input type="text" id="title" placeholder="Masukkan judul artikel" required />
 
     <label for="content">Isi Artikel</label>
-    <textarea
-      id="content"
-      placeholder="Tulis isi artikel di sini..."
-      required
-    ></textarea>
+    <textarea id="content" placeholder="Tulis isi artikel di sini..." required></textarea>
 
     <label for="image">Gambar Artikel (opsional)</label>
     <input type="file" id="image" accept="image/*" />
@@ -64,14 +53,7 @@
 
     <div class="form-actions">
       <button type="submit">💾 Simpan</button>
-      <button
-        type="button"
-        id="cancelEdit"
-        class="secondary"
-        style="display: none"
-      >
-        Batal
-      </button>
+      <button type="button" id="cancelEdit" class="secondary" style="display:none;">Batal</button>
     </div>
 
     <div class="status" id="status"></div>
@@ -149,19 +131,14 @@
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       status.textContent = "⏳ Menyimpan...";
-
       let imageUrl = "";
 
-      // Upload gambar ke R2 (jika ada)
       const imageFile = imageInput.files[0];
       if (imageFile) {
         const formData = new FormData();
         formData.append("file", imageFile);
         try {
-          const uploadRes = await fetch(API_URL + "/api/upload", {
-            method: "POST",
-            body: formData,
-          });
+          const uploadRes = await fetch(API_URL + "/api/upload", { method: "POST", body: formData });
           const uploadData = await uploadRes.json();
           imageUrl = uploadData.url;
         } catch (err) {
@@ -233,9 +210,7 @@
     window.deleteArticle = async (id) => {
       if (!confirm("Yakin ingin menghapus artikel ini?")) return;
       try {
-        const res = await fetch(API_URL + "/api/delete?id=" + id, {
-          method: "DELETE",
-        });
+        const res = await fetch(API_URL + "/api/delete?id=" + id, { method: "DELETE" });
         if (res.ok) {
           alert("🗑️ Artikel dihapus!");
           loadArticles();
@@ -250,7 +225,7 @@
 
     // 🚪 Logout
     function logout() {
-      localStorage.removeItem("hexafaton_admin");
+      sessionStorage.removeItem("hexafaton_admin_session"); // ✅ ganti dari localStorage
       window.location.href = "login.html";
     }
 
