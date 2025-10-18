@@ -1,98 +1,170 @@
+/* 🌿 Gaya Utama Admin Panel Hexafaton */
 body {
   font-family: 'Poppins', sans-serif;
-  background: #f2f6fa;
-  padding: 40px;
+  background: #f9fafb;
+  color: #222;
+  margin: 0;
+  padding: 0;
 }
 
-h1 {
-  color: #0078f2;
+/* 🔹 Header Admin */
+header {
+  background: #1e7a4c;
+  color: #fff;
+  padding: 15px 0;
   text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+header h1 {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.8rem;
+}
+header button {
+  background: #ffb703;
+  color: #145a3b;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 8px;
+}
+header button:hover {
+  background: #ffd166;
 }
 
+/* 🔹 Formulir Artikel */
 form {
   background: #fff;
-  padding: 25px;
+  width: 90%;
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 30px;
   border-radius: 12px;
-  max-width: 600px;
-  margin: 20px auto;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
 }
-
 label {
   font-weight: 600;
+  margin-bottom: 5px;
   display: block;
-  margin-bottom: 8px;
 }
-
 input, textarea {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
   font-size: 14px;
+  transition: all 0.2s ease-in-out;
 }
-
+input:focus, textarea:focus {
+  outline: none;
+  border-color: #1e7a4c;
+  box-shadow: 0 0 0 3px rgba(30, 122, 76, 0.15);
+}
 textarea {
   resize: vertical;
   height: 150px;
 }
 
+/* 🔹 Tombol Aksi */
 button {
-  background: #0078f2;
-  color: white;
+  background: #1e7a4c;
+  color: #fff;
   border: none;
   padding: 10px 18px;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
-  margin-right: 10px;
+  transition: background 0.2s;
 }
-
 button:hover {
-  background: #005fcc;
+  background: #145a3b;
+}
+button.secondary {
+  background: #ccc;
+  color: #333;
+}
+button.secondary:hover {
+  background: #bbb;
 }
 
+/* 🔹 Status Notifikasi */
 .status {
   text-align: center;
-  margin-top: 15px;
+  margin-top: 10px;
   font-weight: 600;
+  color: #145a3b;
 }
 
+/* 🔹 Daftar Artikel */
 .article-list {
-  max-width: 700px;
-  margin: 40px auto;
   background: #fff;
-  padding: 20px;
+  max-width: 800px;
+  width: 90%;
+  margin: 40px auto;
+  padding: 25px;
   border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
 }
-
+.article-list h2 {
+  color: #145a3b;
+  text-align: center;
+  margin-bottom: 20px;
+}
 .article-item {
   border-bottom: 1px solid #eee;
   padding: 15px 0;
 }
-
 .article-item:last-child {
   border-bottom: none;
 }
-
 .article-item h3 {
+  color: #1e7a4c;
   margin: 0 0 5px 0;
+  font-size: 1.1rem;
+}
+.article-item p {
+  margin: 0 0 10px 0;
+  color: #555;
+  font-size: 0.95rem;
 }
 
+/* 🔹 Tombol Edit & Hapus */
+.actions {
+  text-align: right;
+}
 .actions button {
-  background: #555;
-  color: white;
+  background: #1e7a4c;
+  color: #fff;
   font-size: 13px;
+  border-radius: 6px;
+  margin-left: 5px;
   padding: 6px 10px;
-  border-radius: 5px;
 }
-
 .actions .edit {
-  background: #0078f2;
+  background: #ffb703;
+  color: #145a3b;
 }
-
+.actions .edit:hover {
+  background: #ffd166;
+}
 .actions .delete {
   background: #e63946;
+}
+.actions .delete:hover {
+  background: #d62828;
+}
+
+/* 🔹 Footer */
+footer {
+  text-align: center;
+  background: #145a3b;
+  color: #fff;
+  padding: 15px 0;
+  margin-top: 60px;
+  font-size: 0.9rem;
+  letter-spacing: 0.3px;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
 }

@@ -13,6 +13,10 @@
   <script src="config.js"></script>
 </head>
 <body>
+  <header>
+  <h1>✏️ Admin Panel Hexafaton</h1>
+  <button onclick="logout()">🚪 Logout</button>
+  </header>
   <!-- 🔐 Cek Login -->
   <script>
     if (localStorage.getItem("hexafaton_admin") !== "true") {
@@ -170,5 +174,8 @@
     // Jalankan saat halaman dibuka
     loadArticles();
   </script>
+  <footer>
+  <p>© 2025 Hexafaton | Dibangun dengan ❤️ dan GitHub Pages</p>
+  </footer>
 </body>
 </html>
