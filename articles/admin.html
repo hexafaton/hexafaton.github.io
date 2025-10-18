@@ -1,22 +1,21 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin | Hexafaton CMS</title>
 
-  <!-- 🔗 Fonts + CSS -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/admin.css">
+  <!-- 🔗 Fonts & CSS -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="../assets/css/admin.css" />
 
   <!-- 🔗 Konfigurasi API -->
   <script src="config.js"></script>
 </head>
 <body>
-  <header>
-  <h1>✏️ Admin Panel Hexafaton</h1>
-  <button onclick="logout()">🚪 Logout</button>
-  </header>
   <!-- 🔐 Cek Login -->
   <script>
     if (localStorage.getItem("hexafaton_admin") !== "true") {
@@ -24,32 +23,58 @@
     }
   </script>
 
-  <!-- 🔹 Tombol Logout -->
-  <div style="text-align:right; max-width:700px; margin:auto;">
-    <button onclick="logout()" style="background:#e63946;">🚪 Logout</button>
-  </div>
+  <!-- 🔹 Header -->
+  <header>
+    <div class="navbar">
+      <img src="../assets/img/logo.png" alt="Hexafaton Logo" class="logo" />
+      <div class="nav-title">
+        <h1>✏️ Admin Panel Hexafaton</h1>
+        <p>Kelola artikel dengan mudah dan aman</p>
+      </div>
+      <button onclick="logout()">🚪 Logout</button>
+    </div>
+  </header>
 
-  <h1>✏️ Admin Panel Hexafaton</h1>
-
-  <!-- 🔹 Form Tambah/Edit Artikel -->
+  <!-- 🔹 Form Tambah / Edit Artikel -->
   <form id="articleForm">
-    <input type="hidden" id="articleId">
+    <input type="hidden" id="articleId" />
     <label for="title">Judul Artikel</label>
-    <input type="text" id="title" placeholder="Masukkan judul artikel" required>
+    <input
+      type="text"
+      id="title"
+      placeholder="Masukkan judul artikel"
+      required
+    />
 
     <label for="content">Isi Artikel</label>
-    <textarea id="content" placeholder="Tulis isi artikel di sini..." required></textarea>
+    <textarea
+      id="content"
+      placeholder="Tulis isi artikel di sini..."
+      required
+    ></textarea>
 
     <button type="submit">💾 Simpan</button>
-    <button type="button" id="cancelEdit" style="display:none;background:#ccc;color:#000;">Batal</button>
+    <button
+      type="button"
+      id="cancelEdit"
+      class="secondary"
+      style="display: none"
+    >
+      Batal
+    </button>
     <div class="status" id="status"></div>
   </form>
 
   <!-- 🔹 Daftar Artikel -->
-  <div class="article-list" id="articleList">
+  <section class="article-list">
     <h2>📰 Daftar Artikel</h2>
-    <div id="listContainer">Memuat data...</div>
-  </div>
+    <div id="listContainer">⏳ Memuat data...</div>
+  </section>
+
+  <!-- 🔹 Footer -->
+  <footer>
+    <p>© 2025 Hexafaton | Dibangun dengan ❤️ dan GitHub Pages</p>
+  </footer>
 
   <!-- ======================= SCRIPT ======================= -->
   <script>
@@ -58,7 +83,7 @@
     const cancelEditBtn = document.getElementById("cancelEdit");
     const status = document.getElementById("status");
 
-    // 🧩 Load semua artikel
+    // 🔄 Muat Semua Artikel
     async function loadArticles() {
       listContainer.innerHTML = "⏳ Memuat artikel...";
       try {
@@ -71,12 +96,12 @@
         }
 
         listContainer.innerHTML = "";
-        data.forEach(a => {
+        data.forEach((a) => {
           const div = document.createElement("div");
           div.className = "article-item";
           div.innerHTML = `
             <h3>${a.title}</h3>
-            <p>${a.content.substring(0,120)}...</p>
+            <p>${a.content.substring(0, 120)}...</p>
             <div class="actions">
               <button class="edit" onclick="editArticle('${a.id}')">✏️ Edit</button>
               <button class="delete" onclick="deleteArticle('${a.id}')">🗑️ Hapus</button>
@@ -90,24 +115,25 @@
       }
     }
 
-    // 🧩 Tambah atau Update Artikel
+    // 💾 Tambah atau Update Artikel
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       status.textContent = "⏳ Menyimpan...";
 
-      const id = document.getElementById("articleId").value || Date.now().toString();
+      const id =
+        document.getElementById("articleId").value || Date.now().toString();
       const data = {
         id,
         title: document.getElementById("title").value.trim(),
         content: document.getElementById("content").value.trim(),
-        date: new Date().toISOString()
+        date: new Date().toISOString(),
       };
 
       try {
         const res = await fetch(API_URL + "/api/articles", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data)
+          body: JSON.stringify(data),
         });
         if (res.ok) {
           status.textContent = "✅ Artikel berhasil disimpan!";
@@ -124,12 +150,12 @@
       }
     });
 
-    // 🧩 Edit Artikel
+    // ✏️ Edit Artikel
     window.editArticle = async (id) => {
       try {
         const res = await fetch(API_URL + "/api/articles");
         const data = await res.json();
-        const article = data.find(a => a.id === id);
+        const article = data.find((a) => a.id === id);
         if (!article) return alert("Artikel tidak ditemukan!");
 
         document.getElementById("articleId").value = article.id;
@@ -141,18 +167,20 @@
       }
     };
 
-    // 🧩 Batal Edit
+    // 🔙 Batal Edit
     cancelEditBtn.addEventListener("click", () => {
       form.reset();
       document.getElementById("articleId").value = "";
       cancelEditBtn.style.display = "none";
     });
 
-    // 🧩 Hapus Artikel
+    // 🗑️ Hapus Artikel
     window.deleteArticle = async (id) => {
       if (!confirm("Yakin ingin menghapus artikel ini?")) return;
       try {
-        const res = await fetch(API_URL + "/api/delete?id=" + id, { method: "DELETE" });
+        const res = await fetch(API_URL + "/api/delete?id=" + id, {
+          method: "DELETE",
+        });
         if (res.ok) {
           alert("🗑️ Artikel dihapus!");
           loadArticles();
@@ -165,17 +193,14 @@
       }
     };
 
-    // 🧩 Logout
+    // 🚪 Logout
     function logout() {
       localStorage.removeItem("hexafaton_admin");
       window.location.href = "login.html";
     }
 
-    // Jalankan saat halaman dibuka
+    // 🚀 Jalankan saat halaman dibuka
     loadArticles();
   </script>
-  <footer>
-  <p>© 2025 Hexafaton | Dibangun dengan ❤️ dan GitHub Pages</p>
-  </footer>
 </body>
 </html>
