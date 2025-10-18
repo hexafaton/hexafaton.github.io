@@ -4,9 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login Admin | Hexafaton CMS</title>
+
+  <!-- 🔗 Fonts & CSS -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/admin.css">
+  <link rel="stylesheet" href="assets/css/admin.css">
+
   <style>
+    body {
+      background: #f0f4f9;
+      font-family: 'Poppins', sans-serif;
+    }
     .login-box {
       max-width: 400px;
       margin: 100px auto;
@@ -16,6 +23,10 @@
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       text-align: center;
     }
+    h2 {
+      color: #333;
+      font-weight: 600;
+    }
     input {
       width: 100%;
       padding: 10px;
@@ -23,6 +34,11 @@
       border: 1px solid #ccc;
       border-radius: 6px;
       font-size: 14px;
+      outline: none;
+    }
+    input:focus {
+      border-color: #0078f2;
+      box-shadow: 0 0 4px rgba(0,120,242,0.3);
     }
     button {
       background: #0078f2;
@@ -32,6 +48,7 @@
       border-radius: 6px;
       cursor: pointer;
       font-weight: 600;
+      transition: background 0.2s;
     }
     button:hover {
       background: #005fcc;
@@ -53,23 +70,28 @@
 
   <script src="config.js"></script>
   <script>
-    const ADMIN_PASSWORD = "hexafaton123"; // 🔑 GANTI DENGAN PASSWORD RAHASIA BOSKU
+    const ADMIN_PASSWORD = "admin123"; // 🔑 Ganti sesuai keinginan
+    const SESSION_KEY = "hexafaton_admin_session"; // hanya aktif selama tab terbuka
 
+    // 🚀 Kalau sudah login di sesi ini, langsung arahkan ke admin
+    if (sessionStorage.getItem(SESSION_KEY) === "true") {
+      window.location.href = "admin.html";
+    }
+
+    // 🔐 Fungsi login
     function login() {
       const input = document.getElementById("password").value.trim();
       const msg = document.getElementById("msg");
 
       if (input === ADMIN_PASSWORD) {
-        localStorage.setItem("hexafaton_admin", "true");
-        window.location.href = "admin.html";
+        sessionStorage.setItem(SESSION_KEY, "true"); // ✅ hanya untuk sesi ini
+        msg.textContent = "✅ Login berhasil!";
+        setTimeout(() => {
+          window.location.href = "admin.html";
+        }, 500);
       } else {
         msg.textContent = "❌ Password salah!";
       }
-    }
-
-    // Kalau sudah login, langsung pindahkan ke admin.html
-    if (localStorage.getItem("hexafaton_admin") === "true") {
-      window.location.href = "admin.html";
     }
   </script>
 </body>
