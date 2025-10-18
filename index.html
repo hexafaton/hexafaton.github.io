@@ -6,15 +6,14 @@
   <title>Hexafaton | Beranda</title>
   <link rel="stylesheet" href="assets/css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <script src="articles/config.js"></script>
+  <script src="config.js"></script>
+
 </head>
 <body>
   <!-- 🔹 Header Navigasi -->
   <header>
     <div class="navbar">
-      <a href="index.html" class="logo-link" title="Kembali ke Beranda">
-        <img src="assets/img/logo.png" alt="Hexafaton Logo" class="logo">
-      </a>
+      <img src="assets/img/logo.png" alt="Hexafaton Logo" class="logo">
       <nav>
         <a href="index.html" class="active">Beranda</a>
         <a href="articles/">Artikel</a>
@@ -23,49 +22,26 @@
     </div>
   </header>
 
-  <!-- 🔹 Konten Utama -->
-  <main>
-    <!-- 🔹 Hero Section -->
-    <section class="hero">
-      <div class="hero-content">
-        <h1>Selamat Datang di <span>Hexafaton</span></h1>
-        <p>Tempat saya berbagi karya, pengalaman, dan perjalanan hidup di dunia teknologi, kreativitas, serta inspirasi kehidupan.</p>
-        <a href="articles/" class="btn-main">📚 Baca Semua Artikel</a>
-      </div>
-    </section>
+  <!-- 🔹 Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Selamat Datang di <span>Hexafaton</span></h1>
+      <p>Tempat saya berbagi karya, pengalaman, dan perjalanan hidup di dunia teknologi, kreativitas, dan inspirasi.</p>
+      <a href="articles/" class="btn-main">Baca Semua Artikel</a>
+    </div>
+  </section>
 
-    <!-- 🔹 Tentang -->
-    <section class="about">
-      <div class="about-content">
-        <h2>✨ Tentang Hexafaton</h2>
-        <p>
-          <b>Hexafaton</b> adalah platform pribadi yang saya bangun sebagai wadah untuk berbagi
-          pengetahuan, hasil karya, dan refleksi pribadi.  
-          Di sini kamu akan menemukan tulisan seputar <i>coding</i>, <i>startup mindset</i>,
-          pasar saham, desain UI/UX, hingga inspirasi kehidupan mahasiswa dan profesional muda.
-        </p>
-      </div>
-    </section>
-
-    <!-- 🔹 Section: Artikel Terbaru -->
-    <section class="sections">
-      <h2 class="section-title">📰 3 Artikel Terbaru</h2>
-      <div id="latest-articles" class="latest-container">
-        <p class="loading-text">⏳ Memuat artikel terbaru...</p>
-      </div>
-    </section>
-
-    <!-- 🔹 Ajak Baca -->
-    <section class="cta">
-      <h2>Masih Banyak Cerita Lain!</h2>
-      <p>Temukan inspirasi, ide, dan pengalaman menarik lainnya di halaman artikel Hexafaton.</p>
-      <a href="articles/" class="btn-main">Lihat Semua Artikel</a>
-    </section>
-  </main>
+  <!-- 🔹 Section: Artikel Terbaru -->
+  <section class="sections">
+    <h2 style="text-align:center; color:#145a3b; font-size:1.8rem;">📰 3 Artikel Terbaru</h2>
+    <div id="latest-articles" class="latest-container">
+      <p style="text-align:center;">⏳ Memuat artikel terbaru...</p>
+    </div>
+  </section>
 
   <!-- 🔹 Footer -->
   <footer>
-    <p>© 2025 <b>Hexafaton</b> | Dilindungi hak cipta dan jiwa yang membara</p>
+    <p>© 2025 Hexafaton | Dibangun dengan ❤️ dan GitHub Pages</p>
   </footer>
 
   <!-- 🔹 Script Artikel Terbaru -->
@@ -77,15 +53,20 @@
         const data = await res.json();
 
         if (!data.length) {
-          container.innerHTML = "<p class='loading-text'>Belum ada artikel yang dipublikasikan.</p>";
+          container.innerHTML = "<p style='text-align:center;'>Belum ada artikel yang dipublikasikan.</p>";
           return;
         }
 
+        // Urutkan terbaru & ambil 3 teratas
         const latest = data.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 3);
-        container.innerHTML = "";
 
+        // Tampilkan kartu artikel
+        container.innerHTML = "";
         latest.forEach(a => {
-          const imgSrc = a.image && a.image.startsWith("http") ? a.image : "assets/img/default.jpg";
+          const imgSrc = a.image && a.image.startsWith("http")
+            ? a.image
+            : "assets/img/default.jpg";
+
           const card = document.createElement("div");
           card.className = "latest-card";
           card.innerHTML = `
@@ -94,7 +75,11 @@
               <h3>${a.title}</h3>
               <p>${a.content.substring(0, 120)}...</p>
               <span class="date">
-                ${new Date(a.date).toLocaleDateString("id-ID", { day: "2-digit", month: "long", year: "numeric" })}
+                ${new Date(a.date).toLocaleDateString("id-ID", {
+                  day: "2-digit",
+                  month: "long",
+                  year: "numeric"
+                })}
               </span><br>
               <a href="articles/article.html?id=${a.id}" class="btn">Baca Selengkapnya</a>
             </div>
@@ -103,7 +88,7 @@
         });
       } catch (err) {
         console.error("Error memuat artikel:", err);
-        container.innerHTML = "<p class='loading-text' style='color:red;'>⚠️ Gagal memuat artikel.</p>";
+        container.innerHTML = "<p style='text-align:center; color:red;'>⚠️ Gagal memuat artikel.</p>";
       }
     }
 
