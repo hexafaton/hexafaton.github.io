@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Artikel | Hexafaton</title>
+
+  <!-- 🔗 Fonts & CSS -->
   <link rel="stylesheet" href="../assets/css/articles.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
@@ -24,11 +26,11 @@
   <!-- 🔹 Hero Section -->
   <section class="hero-article">
     <h1>📰 Artikel Hexafaton</h1>
-    <p>Kumpulan tulisan, analisis, dan ide yang saya tuangkan dari dunia digital, pasar, dan kehidupan.</p>
+    <p>Kumpulan tulisan, analisis, dan ide dari dunia digital, pasar, dan kehidupan.</p>
   </section>
 
   <!-- 🔹 Article List -->
-  <section class="article-list">
+  <section class="article-list" id="articleContainer">
     <p>Sedang memuat artikel...</p>
   </section>
 
@@ -37,12 +39,13 @@
     <p>© 2025 Hexafaton | Semua artikel ditulis dengan ❤️ dan riset mendalam</p>
   </footer>
 
-  <!-- 🔹 Script -->
-  <!-- GANTI path config.js sesuai posisi file kamu -->
-  <script src="../articles/config.js"></script>
+  <!-- 🔹 Config -->
+  <script src="config.js"></script>
+
+  <!-- 🔹 Script Load Artikel -->
   <script>
     async function loadArticles() {
-      const container = document.querySelector(".article-list");
+      const container = document.getElementById("articleContainer");
       container.innerHTML = "<p>Sedang memuat artikel...</p>";
 
       try {
@@ -54,15 +57,23 @@
           return;
         }
 
-        // Kosongkan isi awal
         container.innerHTML = "";
 
-        // Tampilkan semua artikel dari Cloudflare
+        // 🔁 Urutkan artikel terbaru ke atas
+        articles.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        // 📰 Buat kartu artikel
         articles.forEach((a) => {
           const card = document.createElement("div");
           card.className = "article-card";
+
+          // Gunakan gambar dari R2 jika ada, fallback ke default
+          const imgSrc = a.image && a.image.startsWith("http")
+            ? a.image
+            : "../assets/img/default.jpg";
+
           card.innerHTML = `
-            <img src="../assets/img/default.jpg" alt="${a.title}">
+            <img src="${imgSrc}" alt="${a.title}">
             <div class="article-content">
               <h2>${a.title}</h2>
               <p>${a.content.substring(0, 150)}...</p>
@@ -79,12 +90,11 @@
           container.appendChild(card);
         });
       } catch (err) {
-        container.innerHTML = "<p>Gagal memuat artikel 😢</p>";
-        console.error(err);
+        console.error("Error loading articles:", err);
+        container.innerHTML = "<p>⚠️ Gagal memuat artikel. Coba lagi nanti.</p>";
       }
     }
 
-    // Jalankan saat halaman selesai dimuat
     window.addEventListener("DOMContentLoaded", loadArticles);
   </script>
 </body>
