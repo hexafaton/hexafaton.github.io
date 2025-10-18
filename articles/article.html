@@ -55,33 +55,32 @@
       line-height: 1.3;
     }
 
-    /* 🔹 Meta bar: tanggal & author sejajar tapi tetap dalam padding container */
-    .meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.95rem;
-      color: #555;
-      margin-bottom: 25px;
-      padding: 0 5px; /* biar gak nempel ke tepi */
-    }
+      /* 🔹 Baris meta: tanggal dan author bersebelahan rapat */
+  .meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;              /* jarak kecil antar elemen */
+    color: #555;
+    font-size: 0.95rem;
+    margin-bottom: 25px;
+  }
 
-    .meta .date {
-      color: #555;
-    }
+  .meta .date {
+    color: #555;
+  }
 
-    .meta .author {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-weight: 500;
-      color: #145a3b;
-      justify-content: flex-end;
-    }
+  .meta .author {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+    color: #145a3b;
+  }
 
-    .meta .author::before {
-      content: "✍️";
-    }
+  .meta .author::before {
+    content: "✍️";
+  }
+
 
     .content {
       line-height: 1.8;
