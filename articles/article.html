@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artikel | Hexafaton</title>
+  <link rel="stylesheet" href="../assets/css/articles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="config.js"></script>
+  <style>
+    body { font-family: 'Poppins', sans-serif; margin:0; background:#f9fafc; padding:0; }
+    .container { max-width:800px; margin:50px auto; background:white; padding:30px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.1); }
+    h1 { color:#0078f2; margin-bottom:10px; }
+    .date { color:#888; font-size:14px; margin-bottom:20px; display:block; }
+    p { line-height:1.7; color:#333; }
+    .back { display:inline-block; margin-top:20px; text-decoration:none; color:white; background:#0078f2; padding:10px 20px; border-radius:6px; }
+    .back:hover { background:#005fcc; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 id="title">Memuat...</h1>
+    <span class="date" id="date"></span>
+    <p id="content"></p>
+    <a href="../articles/" class="back">← Kembali ke Artikel</a>
+  </div>
+
+  <script>
+  async function loadArticle() {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+
+    if (!id) {
+      document.getElementById("title").textContent = "Artikel tidak ditemukan";
+      return;
+    }
+
+    try {
+      const res = await fetch(`${API_URL}/api/articles`);
+      const articles = await res.json();
+      const article = articles.find(a => a.id === id);
+
+      if (!article) {
+        document.getElementById("title").textContent = "Artikel tidak ditemukan";
+        return;
+      }
+
+      document.getElementById("title").textContent = article.title;
+      document.getElementById("date").textContent = new Date(article.date).toLocaleDateString("id-ID", { day:"2-digit", month:"long", year:"numeric" });
+      document.getElementById("content").textContent = article.content;
+    } catch (err) {
+      console.error(err);
+      document.getElementById("title").textContent = "Gagal memuat artikel";
+    }
+  }
+
+  loadArticle();
+  </script>
+</body>
+</html>

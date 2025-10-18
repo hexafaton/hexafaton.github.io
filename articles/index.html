@@ -27,51 +27,65 @@
     <p>Kumpulan tulisan, analisis, dan ide yang saya tuangkan dari dunia digital, pasar, dan kehidupan.</p>
   </section>
 
+  <!-- 🔹 Article List -->
+  <section class="article-list">
+    <p>Sedang memuat artikel...</p>
+  </section>
+
   <!-- 🔹 Footer -->
   <footer>
     <p>© 2025 Hexafaton | Semua artikel ditulis dengan ❤️ dan riset mendalam</p>
   </footer>
-  <script src="config.js"></script>
-<script>
-  async function loadArticles() {
-    const container = document.querySelector(".article-list");
-    container.innerHTML = "<p>Sedang memuat artikel...</p>";
 
-    try {
-      const res = await fetch(`${API_URL}/api/articles`);
-      const articles = await res.json();
+  <!-- 🔹 Script -->
+  <!-- GANTI path config.js sesuai posisi file kamu -->
+  <script src="../articles/config.js"></script>
+  <script>
+    async function loadArticles() {
+      const container = document.querySelector(".article-list");
+      container.innerHTML = "<p>Sedang memuat artikel...</p>";
 
-      if (!articles.length) {
-        container.innerHTML = "<p>Belum ada artikel yang dipublikasikan.</p>";
-        return;
+      try {
+        const res = await fetch(`${API_URL}/api/articles`);
+        const articles = await res.json();
+
+        if (!articles.length) {
+          container.innerHTML = "<p>Belum ada artikel yang dipublikasikan.</p>";
+          return;
+        }
+
+        // Kosongkan isi awal
+        container.innerHTML = "";
+
+        // Tampilkan semua artikel dari Cloudflare
+        articles.forEach((a) => {
+          const card = document.createElement("div");
+          card.className = "article-card";
+          card.innerHTML = `
+            <img src="../assets/img/default.jpg" alt="${a.title}">
+            <div class="article-content">
+              <h2>${a.title}</h2>
+              <p>${a.content.substring(0, 150)}...</p>
+              <span class="date">
+                ${new Date(a.date).toLocaleDateString("id-ID", {
+                  day: "2-digit",
+                  month: "long",
+                  year: "numeric",
+                })}
+              </span>
+              <a href="article.html?id=${a.id}" class="btn">Baca Selengkapnya</a>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+      } catch (err) {
+        container.innerHTML = "<p>Gagal memuat artikel 😢</p>";
+        console.error(err);
       }
-
-      // Kosongkan dulu isi statisnya
-      container.innerHTML = "";
-
-      // Loop semua artikel dari Cloudflare
-      articles.forEach((a) => {
-        const card = document.createElement("div");
-        card.className = "article-card";
-        card.innerHTML = `
-          <img src="../assets/img/default.jpg" alt="${a.title}">
-          <div class="article-content">
-            <h2>${a.title}</h2>
-            <p>${a.content.substring(0, 150)}...</p>
-            <span class="date">${new Date(a.date).toLocaleDateString("id-ID", { day:"2-digit", month:"long", year:"numeric" })}</span>
-            <a href="#" class="btn">Baca Selengkapnya</a>
-          </div>
-        `;
-        container.appendChild(card);
-      });
-    } catch (err) {
-      container.innerHTML = "<p>Gagal memuat artikel 😢</p>";
-      console.error(err);
     }
-  }
 
-  // Jalankan saat halaman selesai dimuat
-  window.addEventListener("DOMContentLoaded", loadArticles);
-</script>
+    // Jalankan saat halaman selesai dimuat
+    window.addEventListener("DOMContentLoaded", loadArticles);
+  </script>
 </body>
 </html>
