@@ -38,6 +38,7 @@
   <!-- 🔹 Form Tambah / Edit Artikel -->
   <form id="articleForm">
     <input type="hidden" id="articleId" />
+    
     <label for="title">Judul Artikel</label>
     <input
       type="text"
@@ -53,15 +54,18 @@
       required
     ></textarea>
 
-    <button type="submit">💾 Simpan</button>
-    <button
-      type="button"
-      id="cancelEdit"
-      class="secondary"
-      style="display: none"
-    >
-      Batal
-    </button>
+    <div class="form-actions">
+      <button type="submit">💾 Simpan</button>
+      <button
+        type="button"
+        id="cancelEdit"
+        class="secondary"
+        style="display: none"
+      >
+        Batal
+      </button>
+    </div>
+
     <div class="status" id="status"></div>
   </form>
 
