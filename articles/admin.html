@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin | Hexafaton CMS</title>
 
-  <!-- 🔗 Font + CSS -->
+  <!-- 🔗 Fonts + CSS -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/admin.css">
 
@@ -13,9 +13,21 @@
   <script src="config.js"></script>
 </head>
 <body>
+  <!-- 🔐 Cek Login -->
+  <script>
+    if (localStorage.getItem("hexafaton_admin") !== "true") {
+      window.location.href = "login.html";
+    }
+  </script>
+
+  <!-- 🔹 Tombol Logout -->
+  <div style="text-align:right; max-width:700px; margin:auto;">
+    <button onclick="logout()" style="background:#e63946;">🚪 Logout</button>
+  </div>
+
   <h1>✏️ Admin Panel Hexafaton</h1>
 
-  <!-- 🔹 Form tambah / edit artikel -->
+  <!-- 🔹 Form Tambah/Edit Artikel -->
   <form id="articleForm">
     <input type="hidden" id="articleId">
     <label for="title">Judul Artikel</label>
@@ -29,18 +41,20 @@
     <div class="status" id="status"></div>
   </form>
 
-  <!-- 🔹 Daftar artikel -->
+  <!-- 🔹 Daftar Artikel -->
   <div class="article-list" id="articleList">
     <h2>📰 Daftar Artikel</h2>
     <div id="listContainer">Memuat data...</div>
   </div>
 
+  <!-- ======================= SCRIPT ======================= -->
   <script>
     const form = document.getElementById("articleForm");
     const listContainer = document.getElementById("listContainer");
     const cancelEditBtn = document.getElementById("cancelEdit");
     const status = document.getElementById("status");
 
+    // 🧩 Load semua artikel
     async function loadArticles() {
       listContainer.innerHTML = "⏳ Memuat artikel...";
       try {
@@ -58,7 +72,7 @@
           div.className = "article-item";
           div.innerHTML = `
             <h3>${a.title}</h3>
-            <p>${a.content.substring(0,100)}...</p>
+            <p>${a.content.substring(0,120)}...</p>
             <div class="actions">
               <button class="edit" onclick="editArticle('${a.id}')">✏️ Edit</button>
               <button class="delete" onclick="deleteArticle('${a.id}')">🗑️ Hapus</button>
@@ -72,7 +86,7 @@
       }
     }
 
-    // 🧩 Tambah / Edit Artikel
+    // 🧩 Tambah atau Update Artikel
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       status.textContent = "⏳ Menyimpan...";
@@ -123,6 +137,7 @@
       }
     };
 
+    // 🧩 Batal Edit
     cancelEditBtn.addEventListener("click", () => {
       form.reset();
       document.getElementById("articleId").value = "";
@@ -146,7 +161,13 @@
       }
     };
 
-    // 🔄 Jalankan awal
+    // 🧩 Logout
+    function logout() {
+      localStorage.removeItem("hexafaton_admin");
+      window.location.href = "login.html";
+    }
+
+    // Jalankan saat halaman dibuka
     loadArticles();
   </script>
 </body>
