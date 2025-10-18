@@ -7,6 +7,36 @@ body {
   padding: 0;
 }
 
+/* 🔹 Navbar di Admin */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  margin: auto;
+  padding: 10px 0;
+}
+
+.logo {
+  height: 60px;        /* ✅ ini yang mengatur besar kecilnya logo */
+  width: auto;
+  object-fit: contain;
+}
+
+.nav-title h1 {
+  margin: 0;
+  color: #fff;
+  font-size: 1.6rem;
+}
+
+.nav-title p {
+  margin: 0;
+  color: #ffb703;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+
 /* 🔹 Header Admin */
 header {
   background: #1e7a4c;
