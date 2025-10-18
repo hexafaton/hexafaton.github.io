@@ -4,107 +4,150 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin | Hexafaton CMS</title>
+
+  <!-- 🔗 Font + CSS -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/admin.css">
+
+  <!-- 🔗 Konfigurasi API -->
   <script src="config.js"></script>
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #f2f6fa;
-      padding: 40px;
-    }
-    h1 {
-      color: #0078f2;
-    }
-    form {
-      background: #fff;
-      padding: 30px;
-      border-radius: 12px;
-      max-width: 600px;
-      margin: 20px auto;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    }
-    label {
-      font-weight: 600;
-      display: block;
-      margin-bottom: 8px;
-    }
-    input, textarea {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 20px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 14px;
-    }
-    textarea {
-      resize: vertical;
-      height: 200px;
-    }
-    button {
-      background: #0078f2;
-      color: white;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 600;
-    }
-    button:hover {
-      background: #005fcc;
-    }
-    .status {
-      text-align: center;
-      margin-top: 15px;
-      font-weight: 600;
-    }
-  </style>
 </head>
 <body>
-  <h1>✏️ Tambah Artikel Baru</h1>
+  <h1>✏️ Admin Panel Hexafaton</h1>
 
-  <form id="addArticle">
+  <!-- 🔹 Form tambah / edit artikel -->
+  <form id="articleForm">
+    <input type="hidden" id="articleId">
     <label for="title">Judul Artikel</label>
     <input type="text" id="title" placeholder="Masukkan judul artikel" required>
 
     <label for="content">Isi Artikel</label>
     <textarea id="content" placeholder="Tulis isi artikel di sini..." required></textarea>
 
-    <button type="submit">Publikasikan</button>
+    <button type="submit">💾 Simpan</button>
+    <button type="button" id="cancelEdit" style="display:none;background:#ccc;color:#000;">Batal</button>
     <div class="status" id="status"></div>
   </form>
 
+  <!-- 🔹 Daftar artikel -->
+  <div class="article-list" id="articleList">
+    <h2>📰 Daftar Artikel</h2>
+    <div id="listContainer">Memuat data...</div>
+  </div>
+
   <script>
-    document.getElementById("addArticle").addEventListener("submit", async (e) => {
+    const form = document.getElementById("articleForm");
+    const listContainer = document.getElementById("listContainer");
+    const cancelEditBtn = document.getElementById("cancelEdit");
+    const status = document.getElementById("status");
+
+    async function loadArticles() {
+      listContainer.innerHTML = "⏳ Memuat artikel...";
+      try {
+        const res = await fetch(API_URL + "/api/articles");
+        const data = await res.json();
+
+        if (!data.length) {
+          listContainer.innerHTML = "<p>Belum ada artikel.</p>";
+          return;
+        }
+
+        listContainer.innerHTML = "";
+        data.forEach(a => {
+          const div = document.createElement("div");
+          div.className = "article-item";
+          div.innerHTML = `
+            <h3>${a.title}</h3>
+            <p>${a.content.substring(0,100)}...</p>
+            <div class="actions">
+              <button class="edit" onclick="editArticle('${a.id}')">✏️ Edit</button>
+              <button class="delete" onclick="deleteArticle('${a.id}')">🗑️ Hapus</button>
+            </div>
+          `;
+          listContainer.appendChild(div);
+        });
+      } catch (err) {
+        listContainer.innerHTML = "❌ Gagal memuat artikel.";
+        console.error(err);
+      }
+    }
+
+    // 🧩 Tambah / Edit Artikel
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
+      status.textContent = "⏳ Menyimpan...";
 
-      const status = document.getElementById("status");
-      status.textContent = "⏳ Menyimpan artikel...";
-
+      const id = document.getElementById("articleId").value || Date.now().toString();
       const data = {
-        id: Date.now().toString(),
+        id,
         title: document.getElementById("title").value.trim(),
         content: document.getElementById("content").value.trim(),
         date: new Date().toISOString()
       };
 
       try {
-        const res = await fetch(`${API_URL}/api/articles`, {
+        const res = await fetch(API_URL + "/api/articles", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(data)
         });
-
         if (res.ok) {
           status.textContent = "✅ Artikel berhasil disimpan!";
-          e.target.reset();
+          form.reset();
+          document.getElementById("articleId").value = "";
+          cancelEditBtn.style.display = "none";
+          loadArticles();
         } else {
-          status.textContent = "❌ Gagal menyimpan artikel (cek koneksi Cloudflare).";
+          status.textContent = "❌ Gagal menyimpan artikel.";
         }
       } catch (err) {
-        console.error(err);
         status.textContent = "⚠️ Terjadi kesalahan jaringan.";
+        console.error(err);
       }
     });
+
+    // 🧩 Edit Artikel
+    window.editArticle = async (id) => {
+      try {
+        const res = await fetch(API_URL + "/api/articles");
+        const data = await res.json();
+        const article = data.find(a => a.id === id);
+        if (!article) return alert("Artikel tidak ditemukan!");
+
+        document.getElementById("articleId").value = article.id;
+        document.getElementById("title").value = article.title;
+        document.getElementById("content").value = article.content;
+        cancelEditBtn.style.display = "inline-block";
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    cancelEditBtn.addEventListener("click", () => {
+      form.reset();
+      document.getElementById("articleId").value = "";
+      cancelEditBtn.style.display = "none";
+    });
+
+    // 🧩 Hapus Artikel
+    window.deleteArticle = async (id) => {
+      if (!confirm("Yakin ingin menghapus artikel ini?")) return;
+      try {
+        const res = await fetch(API_URL + "/api/delete?id=" + id, { method: "DELETE" });
+        if (res.ok) {
+          alert("🗑️ Artikel dihapus!");
+          loadArticles();
+        } else {
+          alert("❌ Gagal menghapus artikel.");
+        }
+      } catch (err) {
+        alert("⚠️ Terjadi kesalahan jaringan.");
+        console.error(err);
+      }
+    };
+
+    // 🔄 Jalankan awal
+    loadArticles();
   </script>
 </body>
 </html>
