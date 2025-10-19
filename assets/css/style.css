@@ -44,14 +44,14 @@ nav a.active, nav a:hover {
   margin-bottom: 15px;
 }
 .hero h1 span {
-  color: #ffb703;
+  color: #FF6F3C;
 }
 .hero p {
   font-size: 1.1rem;
   margin-bottom: 25px;
 }
 .btn-main {
-  background: #ffb703;
+  background: #FF6F3C;
   color: #145a3b;
   padding: 10px 25px;
   border-radius: 8px;
@@ -60,7 +60,7 @@ nav a.active, nav a:hover {
   transition: 0.3s;
 }
 .btn-main:hover {
-  background: #ffd166;
+  background: #FF6F3C;
 }
 
 /* 🔹 Section Cards */
